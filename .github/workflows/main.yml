@@ -22,7 +22,13 @@ jobs:
       - name: APT UPDATE and INSTALL SSHPASS
         run: sudo apt update && sudo apt install sshpass
 
-      - name: Deploy to info
-        run: |
-          sshpass -e ssh -o stricthostkeychecking=no gz2jc_docbni@gz2jc.ftp.infomaniak.com
-          pwd
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@5.2.1
+        with:
+          switches: -avzr
+          path: .
+          remote_path: /home/clients/a683ce3e7f173dc4178c580ea6b4e7c3/sites/BNIDOC.studio60.ch
+          remote_host: gz2jc.ftp.infomaniak.com
+          remote_user: gz2jc_docbni
+          remote_key: af:21:db:bd:db:45:b8:4c:e8:0b:19:1e:ba:df:7f:69 uid210489@h2web328
+          remote_key_pass: test
