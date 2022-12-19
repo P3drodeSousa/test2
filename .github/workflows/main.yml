@@ -9,10 +9,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Haciendo deploy
-
-    env:
-      SSHPASS: ${{ secrets.APP_PASS }}
-
     steps:
       - uses: actions/checkout@v3
 
@@ -20,10 +16,12 @@ jobs:
       - run: 'echo "Pedro" > key.txt'
         shell: bash
 
-      - name: APT UPDATE and INSTALL SSHPASS
-        run: sudo apt update && sudo apt install sshpass
-
-      - name: Deploy to info
-        run:
-          sshpass -e ssh -o stricthostkeychecking=no gz2jc_docbni@gz2jc.ftp.infomaniak.com &&
-          scp -r key.txt gz2jc_docbni@gz2jc.ftp.infomaniak.com:/home/clients/a683ce3e7f173dc4178c580ea6b4e7c3/sites/BNIDOC.studio60.ch
+      - uses: actions/checkout@master
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@master
+        with:
+          host: gz2jc.ftp.infomaniak.com
+          username: gz2jc_docbni
+          password: Arches2015$
+          source: "./key.txt"
+          target: "/home/clients/a683ce3e7f173dc4178c580ea6b4e7c3/sites/BNIDOC.studio60.ch"
