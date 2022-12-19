@@ -23,8 +23,9 @@ jobs:
           username: gz2jc_docbni
           password: Arches2015$
           port: 22
-          source: "./fourthFile.txt"
+          source: "."
           target: "/home/clients/a683ce3e7f173dc4178c580ea6b4e7c3/sites/BNIDOC.studio60.ch/Pedro"
+
       - name: APT UPDATE and INSTALL SSHPASS
         run: sudo apt update && sudo apt install sshpass
 
