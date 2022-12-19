@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Haciendo deploy
 
+    env:
+      SSHPASS: ${{ secrets.APP_PASS }}
+
     steps:
       - uses: actions/checkout@v3
 
