@@ -25,4 +25,4 @@ jobs:
       - name: Deploy to info
         run: |
           sshpass -e ssh -o stricthostkeychecking=no gz2jc_docbni@gz2jc.ftp.infomaniak.com
-          rsync -azP  --progress  .  gz2jc_docbni@gz2jc.ftp.infomaniak.com:/home/clients/a683ce3e7f173dc4178c580ea6b4e7c3/sites/BNIDOC.studio60.ch
+          pwd
