@@ -16,5 +16,8 @@ jobs:
       - run: 'echo "Pedro" > key.txt'
         shell: bash
 
+      - name: APT UPDATE and INSTALL SSHPASS
+        run: sudo apt update && sudo apt install sshpass
+
       - name: Deploy to info
-        run: rsync -azP  --progress  .  gz2jc_docbni@gz2jc.ftp.infomaniak.com:/home/clients/a683ce3e7f173dc4178c580ea6b4e7c3/sites/BNIDOC.studio60.ch
+        run: sshpass -p Arches2015$ rsync -azP  --progress  .  gz2jc_docbni@gz2jc.ftp.infomaniak.com:/home/clients/a683ce3e7f173dc4178c580ea6b4e7c3/sites/BNIDOC.studio60.ch
