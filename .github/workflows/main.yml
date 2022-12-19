@@ -11,11 +11,15 @@ jobs:
     name: Haciendo deploy
     steps:
       - uses: actions/checkout@master
+        env:
+          SSHPASS: ${{ secrets.APP_PASS }}
+
+      - name: Instalando php y composer
+        uses: MilesChou/composer-action@master
+        with:
+          args: install --ignore-platform-reqs --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
 
       - run: rm -rf .github
-      - run: echo "This is the Fourth File" > fourthFile.txt && cat fourthFile.txt && pwd
-      - run: ls *
-      - run: realpath fourthFile.txt
 
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
@@ -26,3 +30,11 @@ jobs:
           port: 22
           source: "./fourthFile.txt"
           target: "/home/clients/a683ce3e7f173dc4178c580ea6b4e7c3/sites/BNIDOC.studio60.ch/Pedro"
+      - name: APT UPDATE and INSTALL SSHPASS
+        run: sudo apt update && sudo apt install sshpass
+
+      - name: Migrate db
+        run:
+          sshpass -e ssh -o stricthostkeychecking=no  gz2jc_docbni@$gz2jc.ftp.infomaniak.com
+          "cd /home/clients/a683ce3e7f173dc4178c580ea6b4e7c3/sites/BNIDOC.studio60.ch/Pedro &&
+          php bin/console doctrine:migrations:migrate"
