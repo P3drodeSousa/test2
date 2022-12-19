@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - run: rm -rf .github
-      - run: 'echo "Pedro" > key.txt'
+      - run: echo "Pedro" >> key.txt
         shell: bash
 
       - uses: actions/checkout@master
