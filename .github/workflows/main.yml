@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Haciendo deploy
+    name: Deploy on push Main
 
     env:
       SSHPASS: ${{ secrets.APP_PASS }}
@@ -17,6 +17,7 @@ jobs:
       - uses: actions/checkout@master
 
       - run: rm -rf .github
+      - run: rm -rf .git
 
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
@@ -31,7 +32,7 @@ jobs:
       - name: APT UPDATE and INSTALL SSHPASS
         run: sudo apt update && sudo apt install sshpass
 
-      - name: Migrate db
+      - name: Composer & DB MIGRATE
         run:
           sshpass -e ssh -o stricthostkeychecking=no gz2jc_docbni@gz2jc.ftp.infomaniak.com
           "cd /home/clients/a683ce3e7f173dc4178c580ea6b4e7c3/sites/BNIDOC.studio60.ch/Pedro &&
