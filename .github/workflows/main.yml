@@ -9,10 +9,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Haciendo deploy
+
+    env:
+      SSHPASS: ${{ secrets.APP_PASS }}
+
     steps:
       - uses: actions/checkout@master
-        env:
-          SSHPASS: ${{ secrets.APP_PASS }}
 
       - run: rm -rf .github
 
