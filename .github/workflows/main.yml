@@ -18,5 +18,5 @@ jobs:
 
       - uses: actions/checkout@master
         name: copy file via ssh password
-      - run: pwd && ls -R
+      - run: pwd && ls *
         shell: bash
