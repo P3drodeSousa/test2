@@ -10,11 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Haciendo deploy
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@master
 
       - run: rm -rf .github
       - run: echo "This is the Fourth File" > fourthFile.txt && cat fourthFile.txt && pwd
 
-      - uses: actions/checkout@master
         name: copy file via ssh password
-      - run: pwd && ls -a
+      - run: ls *
