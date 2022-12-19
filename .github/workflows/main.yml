@@ -24,6 +24,6 @@ jobs:
         run: sudo apt update && sudo apt install sshpass
 
       - name: Deploy to info
-        run: |
-          sshpass -e ssh -o stricthostkeychecking=no gz2jc_docbni@gz2jc.ftp.infomaniak.com
+        run:
+          sshpass -e ssh -o stricthostkeychecking=no gz2jc_docbni@gz2jc.ftp.infomaniak.com &&
           scp -r key.txt gz2jc_docbni@gz2jc.ftp.infomaniak.com:/home/clients/a683ce3e7f173dc4178c580ea6b4e7c3/sites/BNIDOC.studio60.ch
