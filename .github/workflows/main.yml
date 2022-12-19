@@ -33,7 +33,7 @@ jobs:
 
       - name: Migrate db
         run:
-          sshpass -e ssh -o stricthostkeychecking=no  gz2jc_docbni@$gz2jc.ftp.infomaniak.com
+          sshpass -e ssh -o stricthostkeychecking=no gz2jc_docbni@$gz2jc.ftp.infomaniak.com
           "cd /home/clients/a683ce3e7f173dc4178c580ea6b4e7c3/sites/BNIDOC.studio60.ch/Pedro &&
           composer config --no-plugins allow-plugins.symfony/flex true &&
           composer install --ignore-platform-reqs --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts &&
